@@ -104,6 +104,7 @@ func (c *Credits) Draw(screen *ebiten.Image) {
 		{"The Duke", "Sebastian Niesen"},
 		{"Ferris", "Sebastian Niesen"},
 		{"Alien", "Sebastian Niesen"},
+		{"Key", "Sebastian Niesen"},
 		{"Coin", "Puddin"},
 		{"Gopher Plains", "aekiro"},
 		{"The Forest", "Tio Aimar"},

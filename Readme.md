@@ -53,6 +53,7 @@ See `resources/images`
 | Ferris | ferris.png | Sebastian Niesen  | [![Creative Commons BY SA](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/) | made for this game |
 | Alien Ferris | alien_ferris.png | Sebastian Niesen  | [![Creative Commons BY SA](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/) | made for this game |
 | Alien | alien.png | Sebastian Niesen  | [![Creative Commons BY SA](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/) | made for this game |
+| Key | key.png, key-sprite.png | Sebastian Niesen  | [![Creative Commons BY SA](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/) | made for this game |
 | Coin | coin.png | Puddin  | [![Creative Commons 0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/deed.de) | https://opengameart.org/content/rotating-coin |
 | Gopher Plains | plains.png | aekiro  | [![Creative Commons BY](https://licensebuttons.net/l/by/4.0/88x31.png)](https://creativecommons.org/licenses/by/4.0/) | https://opengameart.org/content/forest-tileset-0 |
 | The Forest | forest.png | Tio Aimar  | [![Creative Commons 0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/deed.de) | https://opengameart.org/content/2d-platformer-forest-pack |
