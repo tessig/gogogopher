@@ -25,7 +25,7 @@ const (
 
 func main() {
 	ebiten.SetWindowSize(screenWidth, screenHeight)
-	ebiten.SetWindowTitle("Gopher Game")
+	ebiten.SetWindowTitle("Go Go Gopher")
 
 	game := mechanics.NewGame(
 		scenes.NewTitleScene(screenWidth, screenHeight),
