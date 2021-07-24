@@ -5,7 +5,7 @@ import (
 	"image"
 	"strconv"
 
-	"github.com/SolarLune/resolv/resolv"
+	"github.com/SolarLune/resolv"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 

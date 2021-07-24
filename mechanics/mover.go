@@ -1,7 +1,7 @@
 package mechanics
 
 import (
-	"github.com/SolarLune/resolv/resolv"
+	"github.com/SolarLune/resolv"
 )
 
 const (

@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/SolarLune/resolv/resolv"
+	"github.com/SolarLune/resolv"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
@@ -160,7 +160,7 @@ func (l *Play) checkWinConditions() {
 		if !l.isLevelFinished {
 			music.Pause()
 			_ = l.winSound.Rewind()
-			_ = l.winSound.Play()
+			l.winSound.Play()
 			zone := winZones.GetCollidingShapes(l.char).Get(0)
 			l.char.SetXY(zone.GetXY())
 			l.ReloadAfter(4)
@@ -218,7 +218,7 @@ func (l *Play) checkObjects() {
 
 func (l *Play) addCoin() {
 	_ = l.coinSound.Rewind()
-	_ = l.coinSound.Play()
+	l.coinSound.Play()
 	l.coins++
 	if l.coins >= 100 {
 		l.addLife()
@@ -228,7 +228,7 @@ func (l *Play) addCoin() {
 
 func (l *Play) addLife() {
 	_ = l.lifeSound.Rewind()
-	_ = l.lifeSound.Play()
+	l.lifeSound.Play()
 	l.lives++
 }
 

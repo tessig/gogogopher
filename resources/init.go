@@ -2,19 +2,16 @@ package resources
 
 import (
 	"bytes"
+	"embed"
 	"image"
 	"io"
+	"io/fs"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/vorbis"
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/opentype"
-
-	"github.com/tessig/gogogopher/resources/fonts"
-	"github.com/tessig/gogogopher/resources/images"
-	"github.com/tessig/gogogopher/resources/music"
-	"github.com/tessig/gogogopher/resources/sounds"
 )
 
 const (
@@ -61,94 +58,123 @@ var (
 	ArcadeFont      font.Face
 	SmallArcadeFont font.Face
 )
+var (
+	//go:embed embed
+	resources embed.FS
+
+	resourceTypes = map[string]fs.ReadFileFS{
+		"images": nil, "sounds": nil, "music": nil, "fonts": nil,
+	}
+)
+
+func mustReadFile(fs fs.ReadFileFS, name string) []byte {
+	content, err := fs.ReadFile(name)
+	if err != nil {
+		panic(err)
+	}
+
+	return content
+}
+
+// init fs
+func init() {
+	for key := range resourceTypes {
+		f, err := fs.Sub(resources, "embed/"+key)
+		if err != nil {
+			panic(err)
+		}
+		resourceTypes[key] = f.(fs.ReadFileFS)
+	}
+}
 
 // init images
 func init() {
-	img, _, err := image.Decode(bytes.NewReader(images.GopherSprite))
+	images := resourceTypes["images"]
+	img, _, err := image.Decode(bytes.NewReader(mustReadFile(images, "gopher-sprite.png")))
 	if err != nil {
 		panic(err)
 	}
 	GopherSprite = ebiten.NewImageFromImage(img)
 
-	img, _, err = image.Decode(bytes.NewReader(images.GopherEmojis))
+	img, _, err = image.Decode(bytes.NewReader(mustReadFile(images, "gopher-emojis.png")))
 	if err != nil {
 		panic(err)
 	}
 	GopherEmojis = ebiten.NewImageFromImage(img)
 
-	img, _, err = image.Decode(bytes.NewReader(images.PlainsTiles))
+	img, _, err = image.Decode(bytes.NewReader(mustReadFile(images, "plains.png")))
 	if err != nil {
 		panic(err)
 	}
 	PlainsTiles = ebiten.NewImageFromImage(img)
 
-	img, _, err = image.Decode(bytes.NewReader(images.ForestTiles))
+	img, _, err = image.Decode(bytes.NewReader(mustReadFile(images, "forest.png")))
 	if err != nil {
 		panic(err)
 	}
 	ForestTiles = ebiten.NewImageFromImage(img)
 
-	img, _, err = image.Decode(bytes.NewReader(images.Elephpant))
+	img, _, err = image.Decode(bytes.NewReader(mustReadFile(images, "elephpant.png")))
 	if err != nil {
 		panic(err)
 	}
 	Elephpant = ebiten.NewImageFromImage(img)
 
-	img, _, err = image.Decode(bytes.NewReader(images.AlienElephpant))
+	img, _, err = image.Decode(bytes.NewReader(mustReadFile(images, "alien_elephpant.png")))
 	if err != nil {
 		panic(err)
 	}
 	AlienElephpant = ebiten.NewImageFromImage(img)
 
-	img, _, err = image.Decode(bytes.NewReader(images.Python))
+	img, _, err = image.Decode(bytes.NewReader(mustReadFile(images, "python.png")))
 	if err != nil {
 		panic(err)
 	}
 	Python = ebiten.NewImageFromImage(img)
 
-	img, _, err = image.Decode(bytes.NewReader(images.AlienPython))
+	img, _, err = image.Decode(bytes.NewReader(mustReadFile(images, "alien_python.png")))
 	if err != nil {
 		panic(err)
 	}
 	AlienPython = ebiten.NewImageFromImage(img)
 
-	img, _, err = image.Decode(bytes.NewReader(images.Duke))
+	img, _, err = image.Decode(bytes.NewReader(mustReadFile(images, "duke.png")))
 	if err != nil {
 		panic(err)
 	}
 	Duke = ebiten.NewImageFromImage(img)
 
-	img, _, err = image.Decode(bytes.NewReader(images.AlienDuke))
+	img, _, err = image.Decode(bytes.NewReader(mustReadFile(images, "alien_duke.png")))
 	if err != nil {
 		panic(err)
 	}
 	AlienDuke = ebiten.NewImageFromImage(img)
 
-	img, _, err = image.Decode(bytes.NewReader(images.Ferris))
+	img, _, err = image.Decode(bytes.NewReader(mustReadFile(images, "ferris.png")))
 	if err != nil {
 		panic(err)
 	}
 	Ferris = ebiten.NewImageFromImage(img)
 
-	img, _, err = image.Decode(bytes.NewReader(images.AlienFerris))
+	img, _, err = image.Decode(bytes.NewReader(mustReadFile(images, "alien_ferris.png")))
 	if err != nil {
 		panic(err)
 	}
 	AlienFerris = ebiten.NewImageFromImage(img)
 
-	img, _, err = image.Decode(bytes.NewReader(images.Alien))
+	img, _, err = image.Decode(bytes.NewReader(mustReadFile(images, "alien.png")))
 	if err != nil {
 		panic(err)
 	}
 	Alien = ebiten.NewImageFromImage(img)
 
-	img, _, err = image.Decode(bytes.NewReader(images.Coin))
+	img, _, err = image.Decode(bytes.NewReader(mustReadFile(images, "coin.png")))
 	if err != nil {
 		panic(err)
 	}
 	Coin = ebiten.NewImageFromImage(img)
 
-	img, _, err = image.Decode(bytes.NewReader(images.Chest))
+	img, _, err = image.Decode(bytes.NewReader(mustReadFile(images, "chest.png")))
 	if err != nil {
 		panic(err)
 	}
@@ -157,7 +183,8 @@ func init() {
 
 // init sounds
 func init() {
-	oggSound, err := vorbis.Decode(audioContext, bytes.NewReader(sounds.CoinSound))
+	sounds := resourceTypes["sounds"]
+	oggSound, err := vorbis.DecodeWithSampleRate(audioContext.SampleRate(), bytes.NewReader(mustReadFile(sounds, "coin9.ogg")))
 	if err != nil {
 		panic(err)
 	}
@@ -166,7 +193,7 @@ func init() {
 		panic(err)
 	}
 	CoinPlayer.SetVolume(.05)
-	oggSound, err = vorbis.Decode(audioContext, bytes.NewReader(sounds.JumpSound))
+	oggSound, err = vorbis.DecodeWithSampleRate(audioContext.SampleRate(), bytes.NewReader(mustReadFile(sounds, "jump22.ogg")))
 	if err != nil {
 		panic(err)
 	}
@@ -175,7 +202,7 @@ func init() {
 		panic(err)
 	}
 	JumpPlayer.SetVolume(.5)
-	oggSound, err = vorbis.Decode(audioContext, bytes.NewReader(sounds.HurtSound))
+	oggSound, err = vorbis.DecodeWithSampleRate(audioContext.SampleRate(), bytes.NewReader(mustReadFile(sounds, "hurt.ogg")))
 	if err != nil {
 		panic(err)
 	}
@@ -184,7 +211,7 @@ func init() {
 		panic(err)
 	}
 	HurtPlayer.SetVolume(.5)
-	oggSound, err = vorbis.Decode(audioContext, bytes.NewReader(sounds.LifeSound))
+	oggSound, err = vorbis.DecodeWithSampleRate(audioContext.SampleRate(), bytes.NewReader(mustReadFile(sounds, "powerup02.ogg")))
 	if err != nil {
 		panic(err)
 	}
@@ -197,29 +224,30 @@ func init() {
 
 // init music
 func init() {
+	music := resourceTypes["music"]
 	var oggs = map[int]struct {
 		loop   bool
 		data   []byte
 		volume float64
 	}{
-		MusicGreenHills:     {loop: true, data: music.GreenHillsMusic, volume: 1},
-		MusicFunnyChase:     {loop: true, data: music.FunnyChase, volume: 1},
-		MusicSpringThing:    {loop: true, data: music.SpringThing, volume: 1},
-		MusicBirthdayCake:   {loop: true, data: music.BirthdayCake, volume: 1},
-		MusicRetroNoHope:    {loop: false, data: music.RetroNoHope, volume: .2},
-		MusicVictory:        {loop: false, data: music.Victory, volume: .1},
-		MusicUnderTheSun:    {loop: true, data: music.UnderTheSun, volume: 1},
-		MusicPlatform:       {loop: true, data: music.Platform, volume: .2},
-		MusicALittleJourney: {loop: true, data: music.ALittleJourney, volume: .1},
-		MusicProperSummer:   {loop: true, data: music.ProperSummer, volume: 1},
+		MusicGreenHills:     {loop: true, data: mustReadFile(music, "GreenHills.ogg"), volume: 1},
+		MusicFunnyChase:     {loop: true, data: mustReadFile(music, "Funny_Chase.ogg"), volume: 1},
+		MusicSpringThing:    {loop: true, data: mustReadFile(music, "spring_thing.ogg"), volume: 1},
+		MusicBirthdayCake:   {loop: true, data: mustReadFile(music, "Birthday_Cake.ogg"), volume: 1},
+		MusicRetroNoHope:    {loop: false, data: mustReadFile(music, "Retro_No_hope.ogg"), volume: .2},
+		MusicVictory:        {loop: false, data: mustReadFile(music, "Victory.ogg"), volume: .1},
+		MusicUnderTheSun:    {loop: true, data: mustReadFile(music, "under_the_sun.ogg"), volume: 1},
+		MusicPlatform:       {loop: true, data: mustReadFile(music, "Platform.ogg"), volume: .2},
+		MusicALittleJourney: {loop: true, data: mustReadFile(music, "a_little_journey.ogg"), volume: .1},
+		MusicProperSummer:   {loop: true, data: mustReadFile(music, "proper_summer.ogg"), volume: 1},
 	}
 
 	BGPlayer = make(map[int]*audio.Player, len(oggs)+1)
-
+	themeSongFull := mustReadFile(music, "Theme_Song_full.ogg")
 	// special handling for theme song with intro
-	length := int64(len(music.ThemeSongFull) * audioContext.SampleRate())
+	length := int64(len(themeSongFull) * audioContext.SampleRate())
 	intro := int64(59 * audioContext.SampleRate())
-	oggSound, err := vorbis.Decode(audioContext, bytes.NewReader(music.ThemeSongFull))
+	oggSound, err := vorbis.DecodeWithSampleRate(audioContext.SampleRate(), bytes.NewReader(themeSongFull))
 	if err != nil {
 		panic(err)
 	}
@@ -235,7 +263,7 @@ func init() {
 	// normal music
 	for key, ogg := range oggs {
 		var oggSound io.ReadSeeker
-		oggSound, err = vorbis.Decode(audioContext, bytes.NewReader(ogg.data))
+		oggSound, err = vorbis.DecodeWithSampleRate(audioContext.SampleRate(), bytes.NewReader(ogg.data))
 		if err != nil {
 			panic(err)
 		}
@@ -253,7 +281,8 @@ func init() {
 
 // init fonts
 func init() {
-	tt, err := opentype.Parse(fonts.PressStart2P_ttf)
+	fonts := resourceTypes["fonts"]
+	tt, err := opentype.Parse(mustReadFile(fonts, "pressstart2p.ttf"))
 	if err != nil {
 		panic(err)
 	}

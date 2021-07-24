@@ -4,7 +4,7 @@ import (
 	"image"
 	"math"
 
-	"github.com/SolarLune/resolv/resolv"
+	"github.com/SolarLune/resolv"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
 )
@@ -69,7 +69,7 @@ func (c *Character) Jump() {
 	}
 	c.onGround = false
 	_ = c.JumpPlayer.Rewind()
-	_ = c.JumpPlayer.Play()
+	c.JumpPlayer.Play()
 	c.Vy = -16
 }
 
@@ -135,7 +135,7 @@ func (c *Character) checkDeath(deadSpace *resolv.Space) {
 func (c *Character) Die() {
 	if !c.IsDead {
 		_ = c.HurtPlayer.Rewind()
-		_ = c.HurtPlayer.Play()
+		c.HurtPlayer.Play()
 	}
 	c.IsDead = true
 	c.Vy = 0

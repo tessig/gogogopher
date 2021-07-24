@@ -7,11 +7,11 @@ import (
 var active *audio.Player
 
 func Play() {
-	_ = active.Play()
+	active.Play()
 }
 
 func Pause() {
-	_ = active.Pause()
+	active.Pause()
 }
 
 func IsPlaying() bool {
@@ -28,7 +28,7 @@ func SetVolume(v float64) {
 
 func SetTrack(player *audio.Player) {
 	if active != nil {
-		_ = active.Pause()
+		active.Pause()
 	}
 	old := active
 	active = player
