@@ -1,0 +1,79 @@
+{
+  "RT_GROUP_ICON": {
+    "APP": {
+      "0000": [
+        "../setup/icons/icon256.png",
+        "../setup/icons/icon128.png",
+        "../setup/icons/icon64.png",
+        "../setup/icons/icon48.png",
+        "../setup/icons/icon32.png",
+        "../setup/icons/icon16.png"
+      ]
+    }
+  },
+  "RT_MANIFEST": {
+    "#1": {
+      "0409": {
+        "identity": {
+          "name": "Go Go Gopher",
+          "version": ""
+        },
+        "description": "A little platformer game written in Go.",
+        "minimum-os": "win7",
+        "execution-level": "",
+        "ui-access": false,
+        "auto-elevate": false,
+        "dpi-awareness": "system",
+        "disable-theming": false,
+        "disable-window-filtering": false,
+        "high-resolution-scrolling-aware": false,
+        "ultra-high-resolution-scrolling-aware": false,
+        "long-path-aware": false,
+        "printer-driver-isolation": false,
+        "gdi-scaling": false,
+        "segment-heap": false,
+        "use-common-controls-v6": true
+      }
+    }
+  },
+  "RT_VERSION": {
+    "#1": {
+      "0000": {
+        "fixed": {
+          "file_version": "0.0.0.0",
+          "product_version": "0.0.0.0"
+        },
+        "info": {
+          "0409": {
+            "Comments": "",
+            "CompanyName": "github.con/tessig",
+            "FileDescription": "A little platformer game written in Go.",
+            "FileVersion": "",
+            "InternalName": "",
+            "LegalCopyright": "MIT",
+            "LegalTrademarks": "",
+            "OriginalFilename": "",
+            "PrivateBuild": "",
+            "ProductName": "Go Go Gopher",
+            "ProductVersion": "",
+            "SpecialBuild": ""
+          },
+          "0407": {
+            "Comments": "",
+            "CompanyName": "github.con/tessig",
+            "FileDescription": "Ein kleines Jump'n'Run-Spiel, geschrieben in Go.",
+            "FileVersion": "",
+            "InternalName": "",
+            "LegalCopyright": "MIT Licence",
+            "LegalTrademarks": "",
+            "OriginalFilename": "",
+            "PrivateBuild": "",
+            "ProductName": "Go Go Gopher",
+            "ProductVersion": "",
+            "SpecialBuild": ""
+          }
+        }
+      }
+    }
+  }
+}

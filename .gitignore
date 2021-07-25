@@ -4,6 +4,8 @@
 *.dll
 *.so
 *.dylib
+*.syso
+/gogogopher
 
 # Test binary, built with `go test -c`
 *.test
@@ -12,5 +14,5 @@
 *.out
 
 .idea
-gogogopher
+.vscode
 .DS_Store

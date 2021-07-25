@@ -9,8 +9,19 @@ by [Hajime Hoshi](https://github.com/hajimehoshi).
 
 ````bash
 go genereate ./...
-go build .
+go build -o gogogopher .
 ````
+
+### Windows specialities
+
+To embed the usual resources for Windows executables, github.com/tc-hib/go-winres is used. 
+The tool will create `syso` files to be used by `go build`
+
+```bash
+go-winres make --product-version=latest --file-version=latest
+go genereate ./...
+go build -o gogogopher.exe .
+```
 
 ## Attributions, Kudos and licensed material
 
@@ -30,7 +41,7 @@ which are both easy and fun to work with.
 
 ### Fonts
 
-See `resources/fonts`
+See `resources/embed/fonts`
 
 | Name | File | Author/Attribution | Licence | Source |
 |:--- |:--- |:--- |:--- |:--- |
@@ -38,7 +49,7 @@ See `resources/fonts`
 
 ### Graphics
 
-See `resources/images`
+See `resources/embed/images`
 
 | Name | File | Author/Attribution | Licence | Source |
 |:--- |:--- |:--- |:--- |:--- |
@@ -60,7 +71,7 @@ See `resources/images`
 
 ### Music
 
-See `resources/music`
+See `resources/embed/music`
 
 | Name | File | Author/Attribution | Licence | Source |
 |:--- |:--- |:--- |:--- |:--- |
@@ -78,7 +89,7 @@ See `resources/music`
 
 ### Sounds
 
-See `resources/sounds`
+See `resources/embed/sounds`
 
 | Name | File | Author/Attribution | Licence | Source |
 |:--- |:--- |:--- |:--- |:--- |

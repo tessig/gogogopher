@@ -36,22 +36,23 @@
             "scaleInEditor": 1
         },
         "level1.tmx": {
-            "scale": 0.5994,
-            "selectedLayer": 3,
+            "scale": 0.33,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 1793.4601267934602,
-                "y": 645.6456456456456
+                "x": 2562.1212121212125,
+                "y": 590.909090909091
             }
         },
         "level2.tmx": {
             "scale": 0.09023824257425742,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 3169.387965026573,
-                "y": 642.7430138865084
+                "x": 3174.9288530773183,
+                "y": 653.8247899879998
             }
         }
     },
+    "last.imagePath": "C:/Users/Thorsten/workspace/gogogopher/resources/embed/images",
     "map.height": 20,
     "map.lastUsedExportFilter": "CSV files (*.csv)",
     "map.lastUsedFormat": "tmx",
@@ -63,13 +64,13 @@
     "project": "game.tiled-project",
     "recentFiles": [
         "level1.tmx",
+        "level2.tmx",
+        "Plains.tsx",
+        "Forest.tsx",
         "Items.tsx",
         "Objects.tsx",
         "Enemies.tsx",
-        "Forest.tsx",
-        "level2.tmx",
-        "Collisions.tsx",
-        "Plains.tsx"
+        "Collisions.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
