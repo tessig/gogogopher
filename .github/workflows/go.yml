@@ -9,7 +9,33 @@ on:
      - main
 
 jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    name: Static checks
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+      - name: Get dependencies
+        run: go get -v -t -d ./...
+      - name: Go Vet
+        run: go vet ./...
+      - name: Go Fmt
+        run: |
+          fmt=$(gofmt -l .)
+          test -z $fmt || (echo "please run gofmt" ; echo $fmt ; exit 1)
+      - name: Spelling
+        run: go run github.com/client9/misspell/cmd/misspell@v0.3.4 -error .
+      - name: Ineffective assignments
+        run: go run github.com/gordonklaus/ineffassign@4cc7213 .
+      - name: Go Generate
+        run: |
+          go generate ./...
+          git diff --quiet || (echo 'generated go files are not up-to-date, check go generate, go.sum and go.mod' ; git diff ; exit 1)
   build:
+    name: Build executables (Linux/Windows)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -40,6 +66,7 @@ jobs:
           path: executables/windows/gogogopher.exe
 
   build-mac:
+    name: Build executables (MacOS)
     runs-on: macos-11
     steps:
       - uses: actions/checkout@v2
