@@ -32,8 +32,12 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: Executables
-          path: executables/
+          name: Linux Executable
+          path: executables/linux/gogogopher
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Windows Executable
+          path: executables/windows/gogogopher.exe
 
   build-mac:
     runs-on: macos-11
@@ -52,5 +56,5 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: Executables
-          path: executables/
+          name: MacOS Executable
+          path: executables/darwin/gogogopher
