@@ -10,7 +10,7 @@ on:
 
 jobs:
   static-checks:
-    runs-on: ubuntu-latest
+    runs-on: macos-11
     name: Static checks
     steps:
       - uses: actions/checkout@v2
@@ -39,10 +39,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Set up Dependencies
         run: sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev xorg-dev libasound2-dev -y
-
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
