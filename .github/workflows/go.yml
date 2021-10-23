@@ -1,0 +1,81 @@
+name: Go
+
+on:
+  push:
+    branches:
+     - main
+  pull_request:
+    branches:
+     - main
+
+jobs:
+  static-checks:
+    runs-on: macos-11
+    name: Static checks
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+      - name: Get dependencies
+        run: go get -v -t -d ./...
+      - name: Go Vet
+        run: go vet ./...
+      - name: Spelling
+        run: go run github.com/client9/misspell/cmd/misspell@v0.3.4 -error .
+      - name: Ineffective assignments
+        run: go run github.com/gordonklaus/ineffassign@4cc7213 .
+      - name: Go Generate
+        run: |
+          go generate ./...
+          git diff --quiet || (echo 'generated go files are not up-to-date, check go generate, go.sum and go.mod' ; git diff ; exit 1)
+  build:
+    name: Build executables (Linux/Windows)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Dependencies
+        run: sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev xorg-dev libasound2-dev -y
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+
+      - run: mkdir executables
+
+      - name: Build Linux
+        run: GOOS=linux GOARCH=amd64 go build -o executables/linux/gogogopher
+
+      - name: Build Windows
+        run: GOOS=windows GOARCH=amd64 go build -o executables/windows/gogogopher.exe
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Linux Executable
+          path: executables/linux/gogogopher
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Windows Executable
+          path: executables/windows/gogogopher.exe
+
+  build-mac:
+    name: Build executables (MacOS)
+    runs-on: macos-11
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+
+      - run: mkdir executables
+
+      - name: Build Mac
+        run: GOOS=darwin GOARCH=amd64 go build -o executables/darwin/gogogopher
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: MacOS Executable
+          path: executables/darwin/gogogopher
