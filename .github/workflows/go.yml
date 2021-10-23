@@ -14,8 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up OpenGl
-        run: sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev
+      - name: Set up Dependencies
+        run: sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev libx11-dev
 
       - name: Set up Go
         uses: actions/setup-go@v2
