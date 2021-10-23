@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Set up OpenGl
-        uses: openrndr/setup-opengl@v1.1
+        run: sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev
 
       - name: Set up Go
         uses: actions/setup-go@v2
