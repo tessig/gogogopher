@@ -1,14 +1,23 @@
 module github.com/tessig/gogogopher
 
-go 1.16
+go 1.17
 
 require (
 	github.com/SolarLune/resolv v0.0.0-20201206065135-f22ef61a44a3
-	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20210715014612-ab6297867137 // indirect
-	github.com/hajimehoshi/ebiten/v2 v2.1.3
+	github.com/hajimehoshi/ebiten/v2 v2.2.1
 	github.com/spf13/pflag v1.0.5
-	golang.org/x/exp v0.0.0-20210722180016-6781d3edade3
+	golang.org/x/exp v0.0.0-20211012155715-ffe10e552389
 	golang.org/x/image v0.0.0-20210628002857-a66eb6448b8d
-	golang.org/x/mobile v0.0.0-20210716004757-34ab1303b554 // indirect
-	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
+)
+
+require (
+	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20210727001814-0db043d8d5be // indirect
+	github.com/hajimehoshi/oto/v2 v2.1.0-alpha.2 // indirect
+	github.com/jezek/xgb v0.0.0-20210312150743-0e0f116e1240 // indirect
+	github.com/jfreymuth/oggvorbis v1.0.3 // indirect
+	github.com/jfreymuth/vorbis v1.0.2 // indirect
+	golang.org/x/mobile v0.0.0-20210924032853-1c027f395ef7 // indirect
+	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
+	golang.org/x/sys v0.0.0-20211023085530-d6a326fbbf70 // indirect
+	golang.org/x/text v0.3.6 // indirect
 )
