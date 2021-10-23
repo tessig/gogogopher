@@ -25,13 +25,30 @@ jobs:
       - run: mkdir executables
 
       - name: Build Linux
-        run: GOOS=linux go build -o executables/linux/gogogopher
+        run: GOOS=linux GOARCH=amd64 go build -o executables/linux/gogogopher
 
       - name: Build Windows
-        run: GOOS=windows go build -o executables/windows/gogogopher.exe
+        run: GOOS=windows GOARCH=amd64 go build -o executables/windows/gogogopher.exe
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Executables
+          path: executables/
+
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+
+      - run: mkdir executables
 
       - name: Build Mac
-        run: GOOS=darwin go build -o executables/darwin/gogogopher
+        run: GOOS=darwin GOARCH=amd64 go build -o executables/darwin/gogogopher
 
       - uses: actions/upload-artifact@v2
         with:
