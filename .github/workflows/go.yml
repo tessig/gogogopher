@@ -51,6 +51,9 @@ jobs:
       - name: Build Linux
         run: GOOS=linux GOARCH=amd64 go build -o executables/linux/gogogopher
 
+      - name: Prepare Windows
+        run: go run github.com/tc-hib/go-winres@v0.2.3 make --product-version=latest --file-version=latest
+
       - name: Build Windows
         run: GOOS=windows GOARCH=amd64 go build -o executables/windows/gogogopher.exe
 
