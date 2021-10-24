@@ -17,6 +17,7 @@ import (
 
 const (
 	tpl = `// Code generated DO NOT EDIT!
+
 package {{.Package}}
 
 var {{.Var}} = [][]{{.Type}} {

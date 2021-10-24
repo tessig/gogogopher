@@ -19,7 +19,7 @@ const (
 )
 
 func main() {
-	game := setup.NewGane(screenWidth, screenHeight)
+	game := setup.NewGame(screenWidth, screenHeight)
 	if err := ebiten.RunGame(game); err != nil {
 		panic(err)
 	}

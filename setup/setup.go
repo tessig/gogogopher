@@ -10,7 +10,7 @@ import (
 	"github.com/tessig/gogogopher/scenes"
 )
 
-func NewGane(screenWidth, screenHeight int) *mechanics.Game {
+func NewGame(screenWidth, screenHeight int) *mechanics.Game {
 	ebiten.SetWindowSize(screenWidth, screenHeight)
 	ebiten.SetWindowTitle("Go Go Gopher")
 	platformSetup()
