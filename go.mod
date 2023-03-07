@@ -7,7 +7,7 @@ require (
 	github.com/hajimehoshi/ebiten/v2 v2.2.1
 	github.com/spf13/pflag v1.0.5
 	golang.org/x/exp v0.0.0-20211012155715-ffe10e552389
-	golang.org/x/image v0.0.0-20210628002857-a66eb6448b8d
+	golang.org/x/image v0.5.0
 )
 
 require (
@@ -17,7 +17,7 @@ require (
 	github.com/jfreymuth/oggvorbis v1.0.3 // indirect
 	github.com/jfreymuth/vorbis v1.0.2 // indirect
 	golang.org/x/mobile v0.0.0-20210924032853-1c027f395ef7 // indirect
-	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
-	golang.org/x/sys v0.0.0-20211023085530-d6a326fbbf70 // indirect
-	golang.org/x/text v0.3.6 // indirect
+	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4 // indirect
+	golang.org/x/sys v0.0.0-20220722155257-8c9f86f7a55f // indirect
+	golang.org/x/text v0.7.0 // indirect
 )
